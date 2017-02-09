@@ -1,0 +1,7 @@
+function [ V_ta V_tb V_tc ] = thevenin_eq(CB, BT, E_tilde,  )
+%THEVENIN_EQ Summary of this function goes here
+%   Detailed explanation goes here
+
+
+end
+

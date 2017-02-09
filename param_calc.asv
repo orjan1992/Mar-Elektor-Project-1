@@ -1,0 +1,7 @@
+function [ output_args ] = param_calc(V_xn, CB)
+%PARAM_CALC Script 3
+%   Detailed explanation goes here
+
+I 
+end
+

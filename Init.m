@@ -1,0 +1,37 @@
+% Genset 1 and 2
+par.genset1.S_n = 1125e3;   %[kVA](rated apparent loading)
+par.genset1.Ra_1 = 0.0001;  %[Ohm]
+par.genset1.Xs_1 = 0.5095;  %[Ohm]
+par.genset2 = par.genset1;
+
+%Genset 3
+par.genset3.S_n = 538e3;    %[kVA](rated apparent loading)
+par.genset3.Ra_1 = 0.0004;  %[Ohm]
+par.genset3.Xs_1 = 1.0665;  %[Ohm]
+
+%Motor 1
+par.motor1.Slip = 0.02;     %[Ohm]
+par.motor1.Rsm = 0.4169;    %[Ohm]
+par.motor1.Xsm = 0.2429;    %[Ohm]
+par.motor1.Xm = 0.0065;     %[Ohm]
+par.motor1.Rc = 290;        %[Ohm]
+par.motor1.R_2 = 0.023;     %[Ohm]
+par.motor1.X_2 = 0.264;     %[Ohm]
+
+%Motor 2
+par.motor2.Slip = 0.025;     %[Ohm]
+par.motor2.Rsm = 0.5854;    %[Ohm]
+par.motor2.Xsm = 0.7255;    %[Ohm]
+par.motor2.Xm = 0.0140;     %[Ohm]
+par.motor2.Rc = 325;        %[Ohm]
+par.motor2.R_2 = 0.026;     %[Ohm]
+par.motor2.X_2 = 0.295;     %[Ohm]
+
+%Transformer
+par.transforer.N = 0.57735;
+
+%Utility Load
+par.utility.Z_La = 0.2984 + 0.2250i;
+par.utility.Z_Lb = par.utility.Z_La;
+par.utility.Z_Lc = par.utility.Z_La;
+
