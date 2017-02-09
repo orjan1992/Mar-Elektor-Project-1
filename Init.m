@@ -2,12 +2,14 @@
 par.genset1.S_n = 1125e3;   %[kVA](rated apparent loading)
 par.genset1.Ra_1 = 0.0001;  %[Ohm]
 par.genset1.Xs_1 = 0.5095;  %[Ohm]
+par.genset1.Z_a = par.genset1.Ra_1 + par.genset1.Xs_1*1i;
 par.genset2 = par.genset1;
 
 %Genset 3
 par.genset3.S_n = 538e3;    %[kVA](rated apparent loading)
 par.genset3.Ra_1 = 0.0004;  %[Ohm]
 par.genset3.Xs_1 = 1.0665;  %[Ohm]
+par.genset3.Z_a = par.genset3.Ra_1 + par.genset3.Xs_1*1i;
 
 %Motor 1
 par.motor1.Slip = 0.02;     %[Ohm]
@@ -17,7 +19,7 @@ par.motor1.Xm = 0.0065;     %[Ohm]
 par.motor1.Rc = 290;        %[Ohm]
 par.motor1.R_2 = 0.023;     %[Ohm]
 par.motor1.X_2 = 0.264;     %[Ohm]
-par.motor1.Z_m = par.motor1.Rsm + i*par.motor1.Xsm + (1/par.motor1.Rc + 1/(par.motor1.Xm*i) +1/(par.motor1.X_2*i + par.motor1.R_2/par.motor1.Slip))^-1;
+par.motor1.Z_m = par.motor1.Rsm + 1i*par.motor1.Xsm + (1/par.motor1.Rc + 1/(par.motor1.Xm*1i) +1/(par.motor1.X_2*1i + par.motor1.R_2/par.motor1.Slip))^-1;
 
 %Motor 2
 par.motor2.Slip = 0.025;     %[Ohm]
@@ -39,3 +41,17 @@ par.utility.Z_Lb = par.utility.Z_La;
 par.utility.Z_Lb_prime = par.utility.Z_La_prime;
 par.utility.Z_Lc = par.utility.Z_La;
 par.utility.Z_Lc_prime = par.utility.Z_La_prime;
+
+%sim1
+par.genset1.E_tilde = 650;
+par.genset1.theta = 15*pi/180;
+par.genset1.E_a = par.genset1.E_tilde + par.genset1.theta*1i;
+
+par.genset2.E_tilde = par.genset1.E_tilde;
+par.genset2.theta = par.genset1.theta;
+par.genset2.E_a = par.genset1.E_a;
+
+par.genset3.E_tilde = par.genset1.E_tilde;
+par.genset3.theta = par.genset1.theta;
+par.genset3.E_a = par.genset1.E_a;
+

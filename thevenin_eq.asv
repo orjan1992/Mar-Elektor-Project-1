@@ -1,7 +1,30 @@
-function [ V_ta V_tb V_tc ] = thevenin_eq(CB, BT, E_tilde,  )
-%THEVENIN_EQ Summary of this function goes here
+function [V_t Z_t] = thevenin_eq(par, CB, BT, E_tilde, theta)
+%THEVENIN_EQ Script 2
 %   Detailed explanation goes here
-
-
+E_a =
+%Check if Bus is connected
+if BT == 1
+    %Bus is closed
+    if CB(1) == 1;
+        %CB1 is closed
+        V_t(1:3, :) = Inf;
+        V_tb(1) = Inf;
+        V_tc(1) = Inf;
+    else
+        %CB1 is open
+        V_ta(1) = par.genset1.E_a;
+        V_tb(1) = par.genset1.E_a;
+        V_tc(1) = par.genset1.E_a;
+    end
+    
+    if (CB(2) == 1) && (CB(3) == 1)
+        %CB2 and CB3 is closed
+        V_ta(2) = Inf;
+        V_tb(2) = Inf;
+        V_tc(2) = Inf;
+else
+    %Bus is open
+end
+V_t = [V_ta V_tb V_tc]';
 end
 
