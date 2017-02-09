@@ -17,6 +17,7 @@ par.motor1.Xm = 0.0065;     %[Ohm]
 par.motor1.Rc = 290;        %[Ohm]
 par.motor1.R_2 = 0.023;     %[Ohm]
 par.motor1.X_2 = 0.264;     %[Ohm]
+par.motor1.Z_m = par.motor1.Rsm + i*par.motor1.Xsm + (1/par.motor1.Rc + 1/(par.motor1.Xm*i) +1/(par.motor1.X_2*i + par.motor1.R_2/par.motor1.Slip))^-1;
 
 %Motor 2
 par.motor2.Slip = 0.025;     %[Ohm]
@@ -26,12 +27,15 @@ par.motor2.Xm = 0.0140;     %[Ohm]
 par.motor2.Rc = 325;        %[Ohm]
 par.motor2.R_2 = 0.026;     %[Ohm]
 par.motor2.X_2 = 0.295;     %[Ohm]
+par.motor2.Z_m = par.motor2.Rsm + i*par.motor2.Xsm + (1/par.motor2.Rc + 1/(par.motor2.Xm*i) +1/(par.motor2.X_2*i + par.motor2.R_2/par.motor2.Slip))^-1;
 
 %Transformer
-par.transforer.N = 0.57735;
+par.transforer.N = 1/sqrt(3);
 
 %Utility Load
 par.utility.Z_La = 0.2984 + 0.2250i;
+par.utility.Z_La_prime = par.utility.Z_La/par.transforer.N^2;
 par.utility.Z_Lb = par.utility.Z_La;
+par.utility.Z_Lb_prime = par.utility.Z_La_prime;
 par.utility.Z_Lc = par.utility.Z_La;
-
+par.utility.Z_Lc_prime = par.utility.Z_La_prime;

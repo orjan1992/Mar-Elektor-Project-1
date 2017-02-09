@@ -48,40 +48,9 @@ if BT == 1
     end
 else
     %BT1 Open
-    Z_la = 0;
-    Z_lb = 0;
-    Z_lc = 0;
-    
-    %Check CB4
-    if CB(4) == 0
-        %CB4 Open
-        Z_la = par.motor1.Z_m;
-        Z_lb = par.motor1.Z_m;
-        Z_lc = par.motor1.Z_m;
-    end
-    
-    %Check CB5
-    if CB(5) == 0
-        %CB5 Open
-        Z_la = Z_la + par.motor2.Z_m;
-        Z_lb = Z_lb + par.motor2.Z_m;
-        Z_lc = Z_lc + par.motor2.Z_m;
-    end
-    
-    %Check CB6
-    if CB(6) == 0
-        %CB6 Open
-        Z_la = Z_la + par.utility.Z_La_prime;
-        Z_lb = Z_lb + par.utility.Z_Lb_prime;
-        Z_lc = Z_lc + par.utility.Z_Lc_prime;
-    end
-    
-     %Check if there are no loads connected and if so impendance is infinite
-    if (Z_la==0)||(Z_lb==0)||(Z_lc==0)
-        Z_la = Inf;
-        Z_lb = Inf;
-        Z_lc = Inf;
-    end
+    Z_la(2) = 0;
+    Z_lb(2) = 0;
+    Z_lc(2) = 0;
 end
 
 Z_l = [ Z_la; Z_lb; Z_lc ];
