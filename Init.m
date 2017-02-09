@@ -45,13 +45,10 @@ par.utility.Z_Lc_prime = par.utility.Z_La_prime;
 %sim1
 par.genset1.E_tilde = 650;
 par.genset1.theta = 15*pi/180;
-par.genset1.E_a = par.genset1.E_tilde + par.genset1.theta*1i;
 
 par.genset2.E_tilde = par.genset1.E_tilde;
 par.genset2.theta = par.genset1.theta;
-par.genset2.E_a = par.genset1.E_a;
 
 par.genset3.E_tilde = par.genset1.E_tilde;
 par.genset3.theta = par.genset1.theta;
-par.genset3.E_a = par.genset1.E_a;
 

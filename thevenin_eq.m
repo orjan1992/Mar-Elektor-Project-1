@@ -2,6 +2,15 @@ function [V_t Z_t] = thevenin_eq(par, CB, BT)
 %THEVENIN_EQ Script 2
 %   Detailed explanation goes here
 
+%Calculatin E_a
+par.genset1.E_a = par.genset1.E_tilde*cos(par.genset1.theta) + par.genset1.E_tilde*sin(par.genset1.theta)*1i;
+par.genset2.E_a = par.genset2.E_tilde*cos(par.genset2.theta) + par.genset2.E_tilde*sin(par.genset2.theta)*1i;
+par.genset3.E_a = par.genset3.E_tilde*cos(par.genset3.theta) + par.genset3.E_tilde*sin(par.genset3.theta)*1i;
+%{
+par.genset1.E_a = par.genset1.E_tilde + par.genset1.theta*1i;
+par.genset2.E_a = par.genset2.E_tilde + par.genset2.theta*1i;
+par.genset3.E_a = par.genset3.E_tilde + par.genset3.theta*1i;
+%}
 %Check if Bus is connected
 if BT == 1
     %Bus is closed
@@ -45,7 +54,7 @@ if BT == 1
     end
     
     %Phase shifting
-    V_t = V_t.*[1 1; -2*pi*1i/3 -2*pi*1i/3; 2*pi*1i/3 2*pi*1i/3];
+    %V_t = V_t.*[1 1; -2*pi*1i/3 -2*pi*1i/3; 2*pi*1i/3 2*pi*1i/3];
     
 else
     %Bus is open
@@ -107,6 +116,6 @@ else
     end
     
     %Phase shifting
-    V_t = V_t.*[1; -2*pi*1i/3; 2*pi*1i/3];
+    %V_t = V_t.*[1; -2*pi*1i/3; 2*pi*1i/3];
 end
 
