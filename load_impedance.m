@@ -18,8 +18,7 @@ if BT == 1
     end
     
     %STARBOARD BUS
-    Z_l(1) = 0;
-    
+    Z_l(2) = 0;
     if CB(5) == 0
         %CB5 Open
         Z_l(2) = 1/par.motor2.Z_m;
@@ -30,7 +29,7 @@ if BT == 1
          Z_l(2) = Z_l(2) + 1/par.utility.Z_La_prime;
     end
     
-    %Invert to get parallell impedance, 0^-1 = Inf
+    %Invert to get parallell impedance, both closed => 0^-1 = Inf
     Z_l(2) = Z_l(2)^-1;
     
 else
