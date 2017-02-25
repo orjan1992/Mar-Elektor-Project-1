@@ -2,7 +2,7 @@ clear
 init;
 
 %% cases
-sim =1;
+sim =4;
 switch sim
     case 1
         %Case 1.1
@@ -56,8 +56,8 @@ switch sim
         par.genset3.E_tilde = 696;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [1 0 1 1 0 1];
-        BT = 0;
+        CB = [0 1 0 0 1 0];
+        BT = 1;
     case 5
         %Case 2.2
         par.genset1.E_tilde = 705;
@@ -81,4 +81,6 @@ loadParameters = load_params(par, CB, BT, V_n, Z_l);
 print_phasor('V_n', V_n, 'V rms');
 print_phasor('V_t', V_t, 'V rms');
 
-loadParameters.motor1.P + loadParameters.motor2.P + loadParameters.transformer.P
+V_ll = line2line(BT, V_n);
+print_phasor('V_ll', V_ll, 'V rms');
+%loadParameters.motor1.P + loadParameters.motor2.P + loadParameters.transformer.P
