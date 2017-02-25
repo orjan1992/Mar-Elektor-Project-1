@@ -1,14 +1,14 @@
 function [Z_l] = load_impedance(par, CB, BT)
 %LOAD_IMPEDANCE Script 1
 %   Detailed explanation goes here
-%Check if Bus-tie Breaker is closed(1)
+%Check if Bus-tie Breaker is closed
 if BT == 1
-    %Closed
+    %Open
     
     %PORT BUS
     
     %Check if CB4 is connected
-    if CB(4) == 0
+    if CB(4) == 1
         %CB4 Open
         %Calculating load impedance
         Z_l(1) = par.motor1.Z_m;
@@ -18,13 +18,13 @@ if BT == 1
     end
     
     %STARBOARD BUS
-    Z_l(2) = 0;
-    if CB(5) == 0
+    Z_l(2) = 1;
+    if CB(5) == 1
         %CB5 Open
         Z_l(2) = 1/par.motor2.Z_m;
     end
     
-    if CB(6) == 0
+    if CB(6) == 1
         %CB6 Open
          Z_l(2) = Z_l(2) + 1/par.utility.Z_La_prime;
     end

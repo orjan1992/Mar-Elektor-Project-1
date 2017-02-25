@@ -1,7 +1,8 @@
 clear
 init;
 
-sim =4;
+%% cases
+sim =1;
 switch sim
     case 1
         %Case 1.1
@@ -14,7 +15,7 @@ switch sim
         par.genset3.E_tilde = par.genset1.E_tilde;
         par.genset3.theta = par.genset1.theta;
 
-        CB = [0 0 0 0 0 0];
+        CB = zeros(6, 1);
         BT = 0;
     
     case 2
@@ -28,7 +29,7 @@ switch sim
         par.genset3.E_tilde = par.genset1.E_tilde;
         par.genset3.theta = 16.5*pi/180;
 
-        CB = [0 0 0 0 0 0];
+        CB = zeros(6, 1);
         BT = 0;
     
     case 3
@@ -42,8 +43,8 @@ switch sim
         par.genset3.E_tilde = 675;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [0 0 0 0 0 0];
-        BT = 0;
+        CB = ones(6, 1);
+        BT = 1;
     case 4
         %Case 2.1
         par.genset1.E_tilde = 710;
@@ -55,8 +56,8 @@ switch sim
         par.genset3.E_tilde = 696;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [0 1 0 0 1 0];
-        BT = 1;
+        CB = [1 0 1 1 0 1];
+        BT = 0;
     case 5
         %Case 2.2
         par.genset1.E_tilde = 705;
@@ -68,10 +69,11 @@ switch sim
         par.genset3.E_tilde = 705;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [0 1 0 0 1 0];
-        BT = 0;
+        CB = [1 0 1 1 0 1];
+        BT = 1;
 end
 
+%% code
 Z_l = load_impedance(par, CB, BT);
 [V_t Z_t] = thevenin_eq(par, CB, BT);
 V_n = NVA(par, CB, BT, Z_l, V_t, Z_t);
