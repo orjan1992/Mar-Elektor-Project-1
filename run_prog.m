@@ -2,6 +2,11 @@ clear
 init;
 
 %% cases
+% 1 = case 1.1
+% 2 = case 1.1
+% 3 = case 1.3
+% 4 = case 2.1
+% 5 = case 2.2
 sim =4;
 switch sim
     case 1

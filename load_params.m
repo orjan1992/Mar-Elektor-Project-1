@@ -3,7 +3,7 @@ function loadParameters = load_params( par, CB, BT, V_n, Z_l )
 %   Detailed explanation goes here
 
 %Check if Bus-tie Breaker is open
-if BT == 1
+if BT == 0
     %Open
     
     %% PORT BUS
@@ -19,7 +19,7 @@ if BT == 1
     I_T1 = V_n(:, 2)./par.utility.Z_La_prime;
     loadParameters.I_neutral(2) = ones(1, 3)*(1/Z_l(2))*V_n(:, 2);
     
-    %setting currents to zero if closed
+    %setting currents to zero if Open
     if CB(5) == 0
         I_M2 = [0; 0; 0];
     end
@@ -39,7 +39,7 @@ if BT == 1
     V_m_T1 = V_m_M2;
     
 else
-    %% BUS OPEN
+    %% BUS Closed
     %calculating currents
     I_M1 = V_n./par.motor1.Z_m;
     I_M2 = V_n./par.motor2.Z_m;
