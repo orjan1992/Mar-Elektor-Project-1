@@ -48,19 +48,19 @@ else
     
     %Check CB4
     if CB(4) == 0
-        %CB4 closed
+        %CB4 Open
         I_M1 = [0; 0; 0];
     end
     
     %Check CB5
     if CB(5) == 0
-        %CB5 Closed
+        %CB5 Open
         I_M2 = [0; 0; 0];
     end
     
     %Check CB6
     if CB(6) == 0
-        %CB6 Closed
+        %CB6 Open
         I_T1 = [0; 0; 0];
     end
     
