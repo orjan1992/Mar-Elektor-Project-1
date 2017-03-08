@@ -83,9 +83,9 @@ Z_l = load_impedance(par, CB, BT);
 [V_t Z_t] = thevenin_eq(par, CB, BT);
 V_n = NVA(par, CB, BT, Z_l, V_t, Z_t);
 loadParameters = load_params(par, CB, BT, V_n, Z_l);
-print_phasor('V_n', V_n, 'V rms');
-print_phasor('V_t', V_t, 'V rms');
+% print_phasor('V_n', V_n, 'V rms');
+% print_phasor('V_t', V_t, 'V rms');
 
-V_ll = line2line(BT, V_n);
-print_phasor('V_ll', V_ll, 'V rms');
-%loadParameters.motor1.P + loadParameters.motor2.P + loadParameters.transformer.P
+% V_ll = line2line(BT, V_n);
+% print_phasor('V_ll', V_ll, 'V rms');
+loadParameters.S
