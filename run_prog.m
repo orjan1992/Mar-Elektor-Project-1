@@ -7,7 +7,7 @@ init;
 % 3 = case 1.3
 % 4 = case 2.1
 % 5 = case 2.2
-sim =4;
+sim =1;
 switch sim
     case 1
         %Case 1.1
@@ -20,8 +20,8 @@ switch sim
         par.genset3.E_tilde = par.genset1.E_tilde;
         par.genset3.theta = par.genset1.theta;
 
-        CB = zeros(6, 1);
-        BT = 0;
+        CB = ones(6, 1);
+        BT = 1;
     
     case 2
         %Case 1.2
