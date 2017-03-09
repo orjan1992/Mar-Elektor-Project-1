@@ -15,8 +15,20 @@ if BT == 0
     
     %% STARBOARD BUS
     %calculating currents
-    I_M2 = V_n(:, 2)./par.motor2.Z_m;
-    I_T1 = V_n(:, 2)./par.utility.Z_La_prime;
+    if CB(5) == 1
+        %closed
+        I_M2 = V_n(:, 2)./par.motor2.Z_m;
+    else
+        %open
+        I_M2 = 0;
+    end
+    if CB(6) == 1
+        %closed
+        I_T1 = V_n(:, 2)./par.utility.Z_La_prime;
+    else
+        %open
+        I_T1 = 0;
+    end
     loadParameters.I_neutral(2) = ones(1, 3)*(1/Z_l(2))*V_n(:, 2);
     
     %% phi and V_m
@@ -35,25 +47,7 @@ else
     I_M2 = V_n./par.motor2.Z_m;
     I_T1 = V_n./par.utility.Z_La_prime;
     loadParameters.I_neutral = ones(1, 3)*(1/Z_l)*V_n;
-%     
-%     %Check CB4
-%     if CB(4) == 0
-%         %CB4 Open
-%         I_M1 = [0; 0; 0];
-%     end
-%     
-%     %Check CB5
-%     if CB(5) == 0
-%         %CB5 Open
-%         I_M2 = [0; 0; 0];
-%     end
-%     
-%     %Check CB6
-%     if CB(6) == 0
-%         %CB6 Open
-%         I_T1 = [0; 0; 0];
-%     end
-    
+
     %% phi
     PF_M1 = cos(angle(V_n(1)) - angle(I_M1(1)));
     PF_M2 = cos(angle(V_n(1)) - angle(I_M2(1)));
