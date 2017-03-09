@@ -8,7 +8,7 @@ if BT == 0
     
     %% PORT BUS
     
-    %Breaker status on CB4 is already taken care of. Closed gives inf
+    %Breaker status on CB4 is already taken care of. open gives inf
     %impedance->0  current
     I_M1 = V_n(:, 1)./Z_l(1);
     loadParameters.I_neutral(1) = ones(1, 3)*(1/Z_l(1))*V_n(:, 1);
@@ -18,15 +18,6 @@ if BT == 0
     I_M2 = V_n(:, 2)./par.motor2.Z_m;
     I_T1 = V_n(:, 2)./par.utility.Z_La_prime;
     loadParameters.I_neutral(2) = ones(1, 3)*(1/Z_l(2))*V_n(:, 2);
-%     
-%     %setting currents to zero if Open
-%     if CB(5) == 0
-%         I_M2 = [0; 0; 0];
-%     end
-%     if CB(6) == 0
-%         I_T1 = [0; 0; 0];
-%     end
-        
     
     %% phi and V_m
     PF_M1 = cos(angle(V_n(1, 1)) - angle(I_M1(1)));

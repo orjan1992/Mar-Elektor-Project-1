@@ -1,5 +1,4 @@
 clear
-init;
 
 %% cases
 % 1 = case 1.1
@@ -79,6 +78,8 @@ switch sim
 end
 
 %% code
+init;
+CB(1) = 0;
 Z_l = load_impedance(par, CB, BT);
 [V_t Z_t] = thevenin_eq(par, CB, BT);
 V_n = NVA(par, CB, BT, Z_l, V_t, Z_t);
@@ -88,4 +89,4 @@ loadParameters = load_params(par, CB, BT, V_n, Z_l);
 
 % V_ll = line2line(BT, V_n);
 % print_phasor('V_ll', V_ll, 'V rms');
-loadParameters.S
+% loadParameters.S
