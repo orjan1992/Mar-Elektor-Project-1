@@ -43,9 +43,21 @@ if BT == 0
 else
     %% BUS Closed
     %calculating currents
-    I_M1 = V_n./par.motor1.Z_m;
-    I_M2 = V_n./par.motor2.Z_m;
-    I_T1 = V_n./par.utility.Z_La_prime;
+    I_M1 = 0;
+    I_M2 = 0;
+    I_T1 = 0;
+    if CB(4) == 1
+        % closed
+        I_M1 = V_n./par.motor1.Z_m;
+    end
+    if CB(5) == 1
+        % closed
+        I_M2 = V_n./par.motor2.Z_m;
+    end
+    if CB(6) == 1
+        %closed
+        I_T1 = V_n./par.utility.Z_La_prime;
+    end
     loadParameters.I_neutral = ones(1, 3)*(1/Z_l)*V_n;
 
     %% phi
@@ -54,9 +66,9 @@ else
     PF_T1 = cos(angle(V_n(1)) - angle(I_T1(1)));
     
     %% S
-    S_M1 = V_n(1)*conj(I_M1(1));
-    S_M2 = V_n(1)*conj(I_M2(1));
-    S_T1 = V_n(1)*conj(I_T1(1));
+    S_M1 = 3*V_n(1)*conj(I_M1(1));
+    S_M2 = 3*V_n(1)*conj(I_M2(1));
+    S_T1 = 3*V_n(1)*conj(I_T1(1));
 end
 
     %% Feeding into output

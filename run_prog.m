@@ -60,8 +60,8 @@ switch sim
         par.genset3.E_tilde = 696;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [0 1 0 0 1 0];
-        BT = 1;
+        CB = [0 0 1 1 0 1];
+        BT = 0;
     case 5
         %Case 2.2
         par.genset1.E_tilde = 705;
@@ -73,7 +73,7 @@ switch sim
         par.genset3.E_tilde = 705;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [1 0 1 1 0 1];
+        CB = [0 0 1 1 0 1];
         BT = 1;
 end
 
@@ -81,13 +81,13 @@ end
 init;
 Z_l = load_impedance(par, CB, BT);
 [V_t, Z_t] = thevenin_eq(par, CB, BT);
-V_n = NVA(par, CB, BT, Z_l, V_t, Z_t);
-loadParameters = load_params(par, CB, BT, V_n, Z_l);
-genParameters = gen_params(par, CB, BT, V_n, Z_t);
-[S_consumed S_supplied] = totalPower(BT, genParameters, loadParameters);
-% print_phasor('V_n', V_n, 'V rms');
+V_xn = NVA(par, CB, BT, Z_l, V_t, Z_t);
+loadParameters = load_params(par, CB, BT, V_xn, Z_l);
+genParameters = gen_params(par, CB, BT, V_xn, Z_t);
+[S_consumed, S_supplied] = totalPower(BT, genParameters, loadParameters);
+% print_phasor('V_n', V_xn, 'V rms');
 % print_phasor('V_t', V_t, 'V rms');
 
-% V_ll = line2line(BT, V_n);
+% V_ll = line2line(BT, V_xn);
 % print_phasor('V_ll', V_ll, 'V rms');
 % loadParameters.S
