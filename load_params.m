@@ -89,5 +89,4 @@ end
     loadParameters.transformer.P = real(S_T1);
     loadParameters.transformer.Q = imag(S_T1);
     loadParameters.transformer.PF = PF_T1;
-    loadParameters.S = S_M1 + S_M2 + S_T1;
 end

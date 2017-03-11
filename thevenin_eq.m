@@ -38,10 +38,8 @@ if BT == 0
     
     if (CB(2) == 1) && (CB(3) == 1)
         %CB2 is closed and CB3 is closed
-        Z_t = (1/par.genset2.Z_a + 1/par.genset3.Z_a)^-1;
-        V_t = (par.genset2.E/par.genset2.Z_a + par.genset3.E/par.genset3.Z_a)*Z_t;
-        V_t(:, 2) = V_t;
-        Z_t(2) = Z_t;
+        Z_t(2) = (1/par.genset2.Z_a + 1/par.genset3.Z_a)^-1;
+        V_t(:, 2) = (par.genset2.E/par.genset2.Z_a + par.genset3.E/par.genset3.Z_a)*Z_t(2);
     end
 else
     %Bus is closed

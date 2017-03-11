@@ -1,6 +1,6 @@
 par.frequency = 60; %[Hz]
 par.omega = 2*pi*par.frequency; %[radians/s]
-%% Genset 1 and 2
+%% Genset 1
 par.genset1.S_n = 1125e3;   %[kVA](rated apparent loading)
 par.genset1.Ra_1 = 0.0001;  %[Ohm]
 par.genset1.Xs_1 = 0.5095;  %[Ohm]

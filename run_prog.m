@@ -6,7 +6,7 @@ clear
 % 3 = case 1.3
 % 4 = case 2.1
 % 5 = case 2.2
-sim =1;
+sim =4;
 switch sim
     case 1
         %Case 1.1
@@ -54,13 +54,15 @@ switch sim
         par.genset1.E_tilde = 710;
         par.genset1.theta = 20*pi/180;
 
-        par.genset2.E_tilde = 0;
+%         par.genset2.E_tilde = 0;
+par.genset2.E_tilde = 696;
         par.genset2.theta = par.genset1.theta;
 
         par.genset3.E_tilde = 696;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [0 0 1 1 0 1];
+%         CB = [1 0 1 1 0 1];
+        CB = [1 0 1 1 0 1];
         BT = 0;
     case 5
         %Case 2.2
@@ -73,7 +75,7 @@ switch sim
         par.genset3.E_tilde = 705;
         par.genset3.theta = par.genset1.theta;  
 
-        CB = [0 0 1 1 0 1];
+        CB = [1 0 1 1 0 1];
         BT = 1;
 end
 
@@ -83,7 +85,7 @@ Z_l = load_impedance(par, CB, BT);
 [V_t, Z_t] = thevenin_eq(par, CB, BT);
 V_xn = NVA(par, CB, BT, Z_l, V_t, Z_t);
 loadParameters = load_params(par, CB, BT, V_xn, Z_l);
-genParameters = gen_params(par, CB, BT, V_xn, Z_t, Z_l);
+genParameters = gen_params(par, CB, BT, V_xn,V_t, Z_t, Z_l);
 [S_consumed, S_supplied] = totalPower(BT, genParameters, loadParameters);
 % print_phasor('V_n', V_xn, 'V rms');
 % print_phasor('V_t', V_t, 'V rms');

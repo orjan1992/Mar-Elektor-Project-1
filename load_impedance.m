@@ -18,7 +18,7 @@ if BT == 0
     end
     
     %STARBOARD BUS
-    Z_l(2) = 1;
+    Z_l(2) = 0;
     if CB(5) == 1
         %CB5 Closed
         Z_l(2) = 1/par.motor2.Z_m;
