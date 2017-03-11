@@ -84,6 +84,7 @@ Z_l = load_impedance(par, CB, BT);
 V_n = NVA(par, CB, BT, Z_l, V_t, Z_t);
 loadParameters = load_params(par, CB, BT, V_n, Z_l);
 genParameters = gen_params(par, CB, BT, V_n, Z_t);
+[S_consumed S_supplied] = totalPower(BT, genParameters, loadParameters);
 % print_phasor('V_n', V_n, 'V rms');
 % print_phasor('V_t', V_t, 'V rms');
 

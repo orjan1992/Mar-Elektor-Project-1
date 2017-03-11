@@ -37,9 +37,9 @@ if BT == 0
     PF_T1 = cos(angle(V_n(1, 2)) - angle(I_T1(1)));
     
     %% S
-    S_M1 = V_n(1, 1)*conj(I_M1);
-    S_M2 = V_n(1, 2)*conj(I_M2);
-    S_T1 = V_n(1, 2)*conj(I_T1);
+    S_M1 = 3*V_n(1, 1)*conj(I_M1(1));
+    S_M2 = 3*V_n(1, 2)*conj(I_M2(1));
+    S_T1 = 3*V_n(1, 2)*conj(I_T1(1));
 else
     %% BUS Closed
     %calculating currents
@@ -54,9 +54,9 @@ else
     PF_T1 = cos(angle(V_n(1)) - angle(I_T1(1)));
     
     %% S
-    S_M1 = V_n(1)*conj(I_M1);
-    S_M2 = V_n(1)*conj(I_M2);
-    S_T1 = V_n(1)*conj(I_T1);
+    S_M1 = V_n(1)*conj(I_M1(1));
+    S_M2 = V_n(1)*conj(I_M2(1));
+    S_T1 = V_n(1)*conj(I_T1(1));
 end
 
     %% Feeding into output
