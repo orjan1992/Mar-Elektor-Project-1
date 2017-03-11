@@ -8,7 +8,7 @@ if BT == 0
     fprintf('Total supplied power on Port bus: %d\n', genParameters.genset1.S);
     S_consumed = 5;
 else
-    S_consumed = [loadParameters.motor1.S + loadParameters.motor2.S+loadParameters.transformer.S];
+    S_consumed = loadParameters.motor1.S + loadParameters.motor2.S+loadParameters.transformer.S;
     S_supplied = genParameters.genset1.S+genParameters.genset2.S+genParameters.genset3.S;
     fprintf('Total consumed power: %d\n', (loadParameters.motor1.S + loadParameters.motor2.S+loadParameters.transformer.S));
     fprintf('Total supplied power: %d\n', (genParameters.genset1.S+genParameters.genset2.S+genParameters.genset3.S));

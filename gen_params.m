@@ -1,4 +1,4 @@
-function [ genParameters ] = gen_params(  par, CB, BT, V_n, Z_t )
+function [ genParameters ] = gen_params(par, CB, BT, V_n,Z_t, Z_l)
 %GEN_PARAMS Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -8,49 +8,50 @@ if BT == 0
     
     %% PORT BUS
     % V_n == 0 if open => I == 0
-    I_G1 = V_n(:, 1)./par.genset1.Z_a;  
-    genParameters.I_neutral(1) = ones(1, 3)*(1/Z_t(1))*V_n(:, 1);
+    I_G1 = par.genset1.E/(par.genset1.Z_a+Z_l(:, 1));  
+    %genParameters.I_neutral(1) = ones(1, 3)*(1/Z_t(1))*V_n(:, 1);
     
     %% Starboard BUS
-    I_G2 = 0;
-    I_G3 = 0;
-    if CB(2) == 1
-        %closed
-        I_G2 = V_n(:, 2)./par.genset2.Z_a;
+    I_G2 = par.genset2.E/(par.genset2.Z_a+Z_l(:, 2));
+    I_G3 = par.genset3.E/(par.genset3.Z_a+Z_l(:, 2));
+    if CB(2) == 0
+        %open
+        I_G2 = 0;
     end
-    if CB(3) == 1
-        %closed
-        I_G3 = V_n(:, 2)./par.genset3.Z_a;
+    if CB(3) == 0
+        %open
+        I_G3 = 0;
     end
-    genParameters.I_neutral(2) = ones(1, 3)*(1/Z_t(2))*V_n(:, 2);
+    %genParameters.I_neutral(2) = ones(1, 3)*(1/Z_t(2))*V_n(:, 2);
     
     %% Power calculations
-    S_1 = 3*V_n(1,1)*conj(I_G1(1));
-    S_2 = 3*V_n(1, 2)*conj(I_G2(1));
-    S_3 = 3*V_n(1, 2)*conj(I_G3(1));
+    S_1 = 3*V_t(1,1)*conj(I_G1(1));
+    S_2 = 3*V_t(1, 2)*conj(I_G2(1));
+    S_3 = 3*V_t(1, 2)*conj(I_G3(1));
 else
     %bus closed
     %all open
-    I_G1 = 0;
-    I_G2 = 0;
-    I_G3 = 0;
-    if CB(1) == 1
-        %closed
-        I_G1 = V_n./par.genset1.Z_a;
+%     I_G1 = par.genset1.E/(par.genset1.Z_a+Z_l);
+    I_G1 = par.genset1.E_a/par.genset1.Z_a -(V_n/(Z_t+Z_l));
+    I_G2 = par.genset2.E_a/par.genset2.Z_a -(V_n/(Z_t+Z_l));
+    I_G3 = par.genset3.E_a/par.genset3.Z_a -(V_n/(Z_t+Z_l));
+    if CB(1) == 0
+        %open
+        I_G1 = 0;
     end
-    if CB(2) == 1
-        %closed
-        I_G2 = V_n./par.genset2.Z_a;
+    if CB(2) == 0
+        %open
+        I_G2 = 0;
     end
-    if CB(3) == 1
-        %closed
-        I_G3 = V_n./par.genset3.Z_a;
+    if CB(3) == 0
+        %open
+        I_G3 = 0;
     end
-    genParameters.I_neutral = ones(1, 3)*(1/Z_t)*V_n;
+%     genParameters.I_neutral = ones(1, 3)*(1/Z_t)*V_n;
     %% Power calculations
-    S_1 = 3*V_n(1)*conj(I_G1(1));
-    S_2 = V_n'*conj(I_G2);
-    S_3 = V_n'*conj(I_G3);
+    S_1 = 3*par.genset1.E_a*conj(I_G1(1));
+    S_2 = 3*par.genset2.E_a*conj(I_G2(1));
+    S_3 = 3*par.genset3.E_a*conj(I_G3(1));
         
 end
 genParameters.genset1.S = S_1;
